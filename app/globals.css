@@ -2,20 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+html, body {
+  height: 100%;
+}
+
 :root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --secondary: #6d28d9;
+  --secondary-dark: #5b21b6;
+  --neutral: #262626;
   --background: #ffffff;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --card-background: #1e293b;
   }
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+  margin: 0;
+  padding: 0;
+}
+
+.login-container {
+  @apply max-w-md mx-auto mt-20 p-8 rounded-xl shadow-lg bg-[var(--card-background)];
+}
+
+.main-container {
+  @apply max-w-md mx-auto mt-20 p-8 rounded-xl shadow-lg bg-[var(--card-background)];
+}
+
+.input {
+  @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+  bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+  focus:ring-2 focus:ring-blue-500 focus:border-transparent
+  transition-all duration-200 mb-4;
+}
+
+.btn {
+  @apply w-full px-4 py-3 rounded-lg bg-[var(--primary)] text-white font-medium
+  hover:bg-[var(--primary-hover)] transition-colors duration-200
+  focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+}
+
+.chat-list {
+  @apply space-y-3 mt-6;
+}
+
+.chat-item {
+  @apply w-full p-4 rounded-lg bg-white dark:bg-gray-800 
+  border border-gray-200 dark:border-gray-700
+  hover:border-blue-500 dark:hover:border-blue-500
+  transition-all duration-200 cursor-pointer
+  flex items-center justify-between;
+}
+
+@layer components {
+  .brand-button-primary {
+    @apply inline-flex items-center px-6 py-3 rounded-lg
+    bg-[var(--primary)] text-white
+    hover:bg-[var(--primary-dark)]
+    transition-all duration-200
+    disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .brand-button-secondary {
+    @apply inline-flex items-center px-6 py-3
+    border border-gray-300 dark:border-gray-600 rounded-lg
+    text-gray-700 dark:text-gray-200
+    bg-white dark:bg-gray-800
+    hover:bg-gray-50 dark:hover:bg-gray-700
+    transition-all duration-200;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+    bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
+    focus:ring-2 focus:ring-[var(--primary)] focus:border-transparent
+    transition-all duration-200 mb-4
+    disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn {
+    @apply w-full px-4 py-3 rounded-lg bg-[var(--primary)] text-white font-medium
+    hover:bg-[var(--primary-dark)] transition-colors duration-200
+    focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2
+    disabled:opacity-50 disabled:cursor-not-allowed
+    flex items-center justify-center;
+  }
 }
