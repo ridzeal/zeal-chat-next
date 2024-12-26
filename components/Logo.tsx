@@ -15,7 +15,6 @@ export function Logo({ className }: LogoProps) {
         height={brand.logo.height}
         className="rounded-lg"
       />
-      <span className="text-xl font-bold">{brand.name}</span>
     </div>
   );
 }

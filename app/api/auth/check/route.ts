@@ -1,8 +1,21 @@
+import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  // Replace this with your actual authentication check logic
-  const isAuthenticated = false; // This should check your session/token
+  try {
+    // Get the auth token from cookies
+    const authToken = cookies().get('auth-token');
 
-  return NextResponse.json({ authenticated: isAuthenticated });
+    // Check if token exists and is valid
+    const isAuthenticated = !!authToken?.value;
+
+    return NextResponse.json({ 
+      authenticated: isAuthenticated 
+    });
+  } catch (error) {
+    console.error('Auth check error:', error);
+    return NextResponse.json({ 
+      authenticated: false 
+    });
+  }
 }
